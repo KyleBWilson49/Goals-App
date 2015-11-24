@@ -20,6 +20,22 @@ class User < ActiveRecord::Base
 
   has_many :goals
 
+  has_many :goal_comments,
+    through: :goals,
+    source: :comments
+
+  has_many :comments_on_users,
+    foreign_key: :author_id,
+    class_name: "UserComment"
+
+  has_many :comments_on_goals,
+    foreign_key: :commentee_id,
+    class_name: "UserComment"
+
+  has_many :comments_on_self,
+    foreign_key: :author_id,
+    class_name: "GoalComment"
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     user && user.is_password?(password) ? user : nil

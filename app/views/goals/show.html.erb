@@ -1,7 +1,36 @@
 <h1>Here's your goal!</h1>
+
 <p>
   <%= @goal.title %> :
   <%= @goal.body %>
 </p>
+
+<ul>
+  <% @goal.comments.each do |comment| %>
+    <li><%= comment.body %></li>
+  <% end %>
+</ul>
+
+<form action="<%= goal_comments_url %>" method="post">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <label for="add_comment">Add Comment : </label>
+  <br>
+    <textarea name="goal_comment[body]"
+              rows="8"
+              cols="40"
+              id="add_comment"></textarea>
+  <br>
+
+  <input type="hidden"
+         name="goal_comment[goal_id]"
+         value="<%= @goal.id %>">
+
+  <input type="submit" value="Add Comment">
+</form>
+<br>
 
 <%= link_to "Back to Goals", goals_url %>

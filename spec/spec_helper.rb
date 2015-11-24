@@ -41,4 +41,9 @@ RSpec.configure do |config|
     page.choose('public_false')
     click_button "Create Goal"
   end
+
+  def add_comment
+    fill_in "add_comment", with: "This is a comment"
+    click_button "Add Comment"
+  end
 end

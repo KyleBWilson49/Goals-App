@@ -16,5 +16,7 @@
 class Goal < ActiveRecord::Base
   validates :title, :body, :user_id, :goal_date, presence: true
 
-  belongs_to :user 
+  belongs_to :user
+
+  has_many :comments, class_name: "GoalComment"
 end
