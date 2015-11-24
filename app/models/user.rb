@@ -29,12 +29,12 @@ class User < ActiveRecord::Base
     class_name: "UserComment"
 
   has_many :comments_on_goals,
-    foreign_key: :commentee_id,
-    class_name: "UserComment"
-
-  has_many :comments_on_self,
     foreign_key: :author_id,
     class_name: "GoalComment"
+
+  has_many :comments_on_self,
+    foreign_key: :commentee_id,
+    class_name: "UserComment"
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
