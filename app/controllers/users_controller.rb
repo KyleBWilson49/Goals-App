@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      render json: "hello #{@user.username}!"
+      login(@user)
+      redirect_to goals_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new

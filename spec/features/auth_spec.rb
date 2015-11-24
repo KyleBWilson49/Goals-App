@@ -28,7 +28,6 @@ end
 feature "logging in" do
 
   it "shows username on the homepage after login" do
-    # visit "session/new"
     sign_up("Kyle")
     sign_in("Kyle")
     expect(page).to have_content 'Kyle'
@@ -38,8 +37,16 @@ end
 
 feature "logging out" do
 
-  it "begins with logged out state"
+  it "begins with logged out state" do
+    visit '/'
+    expect(page).to have_content "Sign In"
+  end
 
-  it "doesn't show username on the homepage after logout"
+  it "doesn't show username on the homepage after logout" do
+    sign_up("Kyle")
+    sign_in("Kyle")
+    sign_out
+    expect(page).not_to have_content 'Kyle'
+  end
 
 end

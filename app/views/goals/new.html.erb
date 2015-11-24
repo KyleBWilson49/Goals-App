@@ -1,0 +1,33 @@
+<h1>New Goal</h1>
+
+<form action="<%= goals_url %>" method="post">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <label for="Title">Title</label>
+  <input type="text" id="Title" name="goal[title]">
+  <br>
+
+  <label for="Body">Body</label>
+  <textarea name="goal[body]"
+            id="Body"
+            rows="8"
+            cols="40"></textarea>
+  <br>
+
+  <label for="Goal_Date">Goal Date</label>
+  <input type="date"
+         name="goal[goal_date]"
+         value="2016-01-01"
+         id="Goal_Date">
+  <br>
+
+  <label>Public?</label>
+  <input type="radio" name="goal[public]" value="true" id="public_true" checked>True
+  <input type="radio" name="goal[public]" value="false" id="public_false">False
+  <br>
+
+  <input type="submit" value="Create Goal">
+</form>

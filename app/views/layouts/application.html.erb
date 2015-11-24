@@ -10,9 +10,19 @@
 
 <% if current_user %>
   <%= current_user.username %>
+  <%= button_to "Sign Out", session_url, method: :delete %>
 <% else %>
   <%= link_to "Sign In", new_session_url %>
+  <%= link_to "Create User", new_user_url %>
 <% end %>
+
+<ul>
+<% if flash.now[:errors] %>
+  <% flash.now[:errors].each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+<% end %>
+</ul>
 
 <%= yield %>
 

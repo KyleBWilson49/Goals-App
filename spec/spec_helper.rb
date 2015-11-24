@@ -22,4 +22,23 @@ RSpec.configure do |config|
     fill_in "Password", with: 'password'
     click_button 'Sign In'
   end
+
+  def sign_out
+    click_button 'Sign Out'
+  end
+
+  def create_goal
+    visit '/goals/new'
+    fill_in "Title", with: "hello"
+    fill_in "Body", with: "goodbye"
+    click_button "Create Goal"
+  end
+
+  def create_secret_goal
+    visit '/goals/new'
+    fill_in "Title", with: "secret"
+    fill_in "Body", with: "seeeecrrreeet"
+    page.choose('public_false')
+    click_button "Create Goal"
+  end
 end
